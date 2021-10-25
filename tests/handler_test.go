@@ -17,5 +17,4 @@ func TestSetGet(t *testing.T) {
 	if result != "www.yemeksepeti.com.tr" {
 		t.Errorf("value not equel")
 	}
-
 }

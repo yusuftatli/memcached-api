@@ -4,13 +4,14 @@ import (
 	"sync"
 )
 
-
+//data local cache
+//lock it locks the source while set process same time
 type KeyValueStore struct {
-	data   map[string]string //datanın tutulacağı local obje
-	lock   *sync.Mutex //aynı zamanda set işlemi sırasında kaynağı locklar
+	data   map[string]string
+	lock   *sync.Mutex 
 }
 
-//yeni instace oluşturur. 
+//create new instance
 func NewKeyValuStore() (*KeyValueStore) {
 	c := &KeyValueStore{
 		data:   map[string]string{},
@@ -19,6 +20,7 @@ func NewKeyValuStore() (*KeyValueStore) {
 	return c
 }
 
+//given key and value writes to the local cache
 func (t *KeyValueStore) Set(key string, value string) error {
 	t.lock.Lock()
 	defer t.lock.Unlock()
@@ -26,6 +28,7 @@ func (t *KeyValueStore) Set(key string, value string) error {
 	return nil
 }
 
+//return specific cache value given by key value
 func (t *KeyValueStore) Get(key string) string {
 	if item, ok := t.data[key]; ok {
 		return item
@@ -33,11 +36,12 @@ func (t *KeyValueStore) Get(key string) string {
 	return ""
 }
 
+//returns all cache values
 func (t *KeyValueStore) GetAll() map[string]string {
 	return t.data
 }
 
-func (t *KeyValueStore) SetAll(values map[string]string)  {
+func (t *KeyValueStore) InitilizeCache(values map[string]string)  {
 	t.lock.Lock()
 	defer t.lock.Unlock()
 	t.data = values

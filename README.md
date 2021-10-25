@@ -1,6 +1,6 @@
 # Yemek sepeti In memory key-value store REST-API
 
-While developing the project, it was avoided to use external libraries.
+While developing the project, i avoided to use external libraries.
 
 ## Usage
 >deployed to Heroku 
