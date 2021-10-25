@@ -2,12 +2,6 @@
 
 While developing the project, it was avoided to use external libraries.
 
-## Installation
-
-```bash
-pip install foobar
-```
-
 ## Usage
 >deployed to Heroku 
 ```
