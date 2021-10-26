@@ -1,4 +1,4 @@
-# Yemek sepeti In memory key-value store REST-API
+#In memory key-value store REST-API
 
 While developing the project, i avoided to use external libraries.
 
