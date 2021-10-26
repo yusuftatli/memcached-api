@@ -5,8 +5,9 @@ While developing the project, i avoided to use external libraries.
 ## Usage
 >deployed to Heroku 
 ```
-key set => https://yemek-sepeti-heroku.herokuapp.com/set?url=https://www.yemeksepeti.com/
-ket get => https://yemek-sepeti-heroku.herokuapp.com/get?key=url
+key value set => https://yemek-sepeti-heroku.herokuapp.com/set?url=https://www.yemeksepeti.com/
+key value get => https://yemek-sepeti-heroku.herokuapp.com/get?key=url
+delete all cache value => https://yemek-sepeti-heroku.herokuapp.com/deleteall
 
 ```
 
@@ -14,6 +15,7 @@ ket get => https://yemek-sepeti-heroku.herokuapp.com/get?key=url
 ```
 key set => http://localhost:8000/set?url=www.yemeksepeti.com/
 ket get => http://localhost:8000/get?key=url
+delete all cache value => http://localhost:8000/deleteall
 
 ```
 
@@ -31,6 +33,13 @@ make build
 heroku login
 heroku create
 git push heroku master
+
+```
+
+>docker run
+```
+docker build
+docker run
 
 ```
 
