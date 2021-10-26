@@ -41,8 +41,8 @@ func (f *FileHandler) WritePeriodically() {
 
 //read data from the file and then write to local cache
 func (f *FileHandler) LoadData() {
-	if _, err := os.Stat("./db.txt"); os.IsNotExist(err) {
-		file, err := os.Create("./db.txt")
+	if _, err := os.Stat(common.GetEnvironment().FilePath); os.IsNotExist(err) {
+		file, err := os.Create(common.GetEnvironment().FilePath)
 		if err != nil {
 			panic(err)
 		}
@@ -56,7 +56,7 @@ func (f *FileHandler) LoadData() {
 		}
 		f.keyValueStore.InitilizeCache(data)
 	} else {
-		file, _ := os.OpenFile("./db.txt", os.O_RDWR|os.O_APPEND, 0660)
+		file, _ := os.OpenFile(common.GetEnvironment().FilePath, os.O_RDWR|os.O_APPEND, 0660)
 		if err != nil {
 			log.Fatal(err)
 		}

@@ -46,3 +46,9 @@ func (t *KeyValueStore) InitilizeCache(values map[string]string)  {
 	defer t.lock.Unlock()
 	t.data = values
 }
+
+func (t *KeyValueStore) DeleteAllCache()  {
+	t.lock.Lock()
+	defer t.lock.Unlock()
+	t.data = nil
+}

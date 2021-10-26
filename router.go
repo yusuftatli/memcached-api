@@ -59,4 +59,13 @@ func InitializeRoutes(keyValueStore *handlers.KeyValueStore){
 		w.WriteHeader(http.StatusOK)
 		_, _ = w.Write(bin)
 	}) 
+
+	http.HandleFunc("/deleteall", func(w http.ResponseWriter, r *http.Request) {
+
+		keyValueStore.DeleteAllCache()
+		bin, _ := json.Marshal("deleted all cache values")
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write(bin)
+	}) 
 }
