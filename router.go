@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
+	"log"
 	"net/http"
 	"strings"
 
@@ -18,14 +18,7 @@ func InitializeRoutes(keyValueStore *handlers.KeyValueStore){
 	http.HandleFunc("/get", func(w http.ResponseWriter, r *http.Request) {
 		params := strings.Split(r.URL.RawQuery,"=")
 
-		id := r.Header.Get("X-Correlation-Id")
-		if id == "" {
-			newid := uuid.New()
-			id = newid.String()
-		}
-	
-		fmt.Println("co id =>",id)
-
+		log.Println("co id =>",GetCorrelation(r))
 		if len(params) != 2 {
 			bin, _ := json.Marshal("Url Params 'key' is not valid")
 			w.Header().Set("Content-Type", "application/json")
@@ -43,7 +36,7 @@ func InitializeRoutes(keyValueStore *handlers.KeyValueStore){
 
 	http.HandleFunc("/set", func(w http.ResponseWriter, r *http.Request) {
 		params := strings.Split(r.URL.RawQuery,"=")
-		fmt.Println(params)
+		log.Println("co id =>",GetCorrelation(r))
 
 		if len(params) != 2 {
 			bin, _ := json.Marshal("Url Params 'key' is not valid")
@@ -61,11 +54,20 @@ func InitializeRoutes(keyValueStore *handlers.KeyValueStore){
 	}) 
 
 	http.HandleFunc("/deleteall", func(w http.ResponseWriter, r *http.Request) {
-
+		log.Println("co id =>",GetCorrelation(r))
 		keyValueStore.DeleteAllCache()
 		bin, _ := json.Marshal("deleted all cache values")
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		_, _ = w.Write(bin)
 	}) 
+}
+
+func GetCorrelation(r *http.Request)string{
+	id := r.Header.Get("X-Correlation-Id")
+		if id == "" {
+			newid := uuid.New()
+			id = newid.String()
+		}
+		return id
 }
