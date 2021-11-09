@@ -5,9 +5,9 @@ While developing the project, i avoided to use external libraries.
 ## Usage
 >deployed to Heroku 
 ```
-key value set => https://yemek-sepeti-heroku.herokuapp.com/set?url=https://www.yemeksepeti.com/
-key value get => https://yemek-sepeti-heroku.herokuapp.com/get?key=url
-delete all cache value => https://yemek-sepeti-heroku.herokuapp.com/deleteall
+key value set => https://ys-herokuapp.com/set?url=https://www.yemeksepeti.com/
+key value get => https://ys-heroku.herokuapp.com/get?key=url
+delete all cache value => https://ys-heroku.herokuapp.com/deleteall
 
 ```
 
